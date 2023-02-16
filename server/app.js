@@ -36,18 +36,11 @@ app.post("/register", jsonParser, function (req, res, next) {
       "INSERT INTO users (email, password, fname, lname) VALUES (?, ?, ?, ?)",
       [req.body.email, hash, req.body.fname, req.body.lname],
       function (err, results, fields) {
-        //   console.log(results); // results contains rows returned by server
-        //   console.log(fields); // fields contains extra meta data about results, if available
-
         if (err) {
           res.json({ error: "error", message: err });
           return;
         }
-
-        // If you execute same statement again, it will be picked from a LRU cache
-        // which will save query preparation time and give better performance
         res.json({status: "ok", message: "User registered successfully"});
-        
       }
     );
   });
@@ -114,6 +107,7 @@ app.post("/authen", jsonParser, function (req, res, next) {
   }
 });
 
+/*
 // get user profile api with authentication middleware
 app.get("/user", jsonParser, function (req, res, next) {
   try {
@@ -150,6 +144,7 @@ app.get("/user", jsonParser, function (req, res, next) {
     res.json({ status: "error", message: err.message });
   }
 });
+*/
 
 app.listen(3333, function () {
   console.log("CORS-enabled web server listening on port 3333");

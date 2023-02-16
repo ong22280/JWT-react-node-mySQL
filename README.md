@@ -34,14 +34,14 @@ For example, when you sign in with Google, Google issues a JWT which contains th
     npm install
     nodemon app.js
     ``````````````````````````
-    Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
+    Open [http://localhost:3333](http://localhost:3333) to view it in the browser.
 3. ### Client Installation
     ``````````````````````````
     cd client
     npm install
     npm run dev
     ``````````````````````````
-    Open [http://localhost:3333](http://localhost:3333) to view it in the browser.
+    Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
 
 ## Website reference
 - [JWT-nodejs](https://www.npmjs.com/package/jsonwebtoken) : identify an authenticated user
