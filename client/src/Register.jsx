@@ -24,6 +24,31 @@ export default function SignUp() {
       lname: data.get("lastName"),
     };
 
+    // fetch version async/await
+    const register = async () => {
+      // request to server to register
+      const response = await fetch("http://localhost:3333/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // convert json to string
+        body: JSON.stringify(jsonData),
+      });
+      // get response from server as json object
+      const data = await response.json();
+      // check from server if registration is successful
+      if (data.status === "ok") {
+        alert("Registration successful");
+        console.log("data from server: ", data);
+      } else {
+        alert("Registration failed");
+      }
+    };
+    register();
+
+    // fetch version callback function
+    /*
     fetch("http://localhost:3333/register", {
       method: "POST",
       headers: {
@@ -40,6 +65,7 @@ export default function SignUp() {
           alert("Registration failed");
         }
       });
+      */
   };
 
   return (

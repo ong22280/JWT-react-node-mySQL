@@ -14,6 +14,38 @@ export default function Album() {
 
   useEffect(() => {
     const token = localStorage.getItem("token"); // To get data from local storage
+
+    // fetch version async/await
+    const authentication = async () => {
+      // request to server to verify token
+      const response = await fetch("http://localhost:3333/authen", {
+        method: "POST",
+        headers: {
+          // Content-Type: application/json is required for POST request to work with Express server (body-parser)
+          "Content-Type": "application/json",
+          // Authorization: Bearer <token> is required for Express server to verify token
+          Authorization: "Bearer " + token,
+        },
+      });
+      // get data from server response (json)
+      const data = await response.json();
+      // check status from server response
+      if (data.status === "ok") {
+        console.log("data from server: ", data);
+        console.log("token: ", token);
+        // set data to state
+        setEmail(data.decoded.email);
+      } else {
+        alert("Authentication failed");
+        // To clear a specific item from local storage
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
+    };
+    authentication();
+
+    // fetch version callback function
+    /*
     fetch("http://localhost:3333/authen", {
       method: "POST",
       headers: {
@@ -38,6 +70,8 @@ export default function Album() {
       .catch((error) => {
         console.error("Error:", error);
       });
+      */
+
   }, []);
 
   const handleLogout = () => {

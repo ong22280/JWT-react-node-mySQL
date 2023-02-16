@@ -26,9 +26,8 @@ For example, when you sign in with Google, Google issues a JWT which contains th
 6. MySQL
 
 ## Steps to run the project in your machine
-1. import sql script into mysql (`mydb.sql`)
+1. import sql script into mysql ( **mydb.sql** )
     ### user table
-
     | Field    | Type        | Null | Key | Default | Extra          | Comment         |
     |----------|-------------|------|-----|---------|----------------|-----------------|
     | id       | int(11)     | NO   | PRI | NULL    | auto_increment | primary key     |
@@ -36,8 +35,6 @@ For example, when you sign in with Google, Google issues a JWT which contains th
     | password | text        | NO   |     | NULL    |                | user's password |
     | fname    | varchar(50) | NO   |     | NULL    |                | first name      |
     | lname    | varchar(50) | NO   |     | NULL    |                | last name       |
-
-
 2. ### Server Installation
     ``````````````````````````
     cd server 
@@ -57,5 +54,5 @@ For example, when you sign in with Google, Google issues a JWT which contains th
 - [JWT-nodejs](https://www.npmjs.com/package/jsonwebtoken) : identify an authenticated user
 - [Express API with JWT](https://gist.github.com/thebigredgeek/230368bd92aa19e3f6638b659edf5cef)
 - [Bcrypt](https://www.npmjs.com/package/bcrypt) : A library to help you hash passwords.
-- [Ajax](https://reactjs.org/docs/faq-ajax.html) : send and receive information in various formats
+- [Ajax](https://reactjs.org/docs/faq-ajax.html) : send and receive (HTTPS request)information in various formats
 - [Cors](https://www.npmjs.com/package/cors) : access the api from different domain

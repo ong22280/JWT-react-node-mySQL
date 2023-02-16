@@ -26,6 +26,30 @@ export default function SignIn() {
       password: data.get("password"),
     };
 
+    // fetch version async/await
+    const login = async () => {
+      const response = await fetch("http://localhost:3333/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(jsonData),
+      });
+      const data = await response.json();
+      if (data.status === "ok") {
+        localStorage.setItem("token", data.token);
+        console.log("data from server: ", data);
+        alert("Login successful");
+        // To store data
+        window.location.href = "/welcome";
+      } else {
+        alert("Login failed");
+      }
+    };
+    login();
+
+    // fetch version callback function
+    /*
     fetch("http://localhost:3333/login", {
       method: "POST",
       headers: {
@@ -48,6 +72,7 @@ export default function SignIn() {
       .catch((error) => {
         console.error("Error:", error);
       });
+      */
   };
 
   return (

@@ -24,6 +24,30 @@ const connection = mysql.createConnection({
   database: "mydb",
 });
 
+// app.post("/register", jsonParser, function (req, res, next) version async await and arrow function
+app.post("/register", jsonParser, async function (req, res, next) {
+  // const email = req.body.email; // get email from request body
+
+  // hash password
+  const hash = await bcrypt.hash(req.body.password, saltRounds);
+  // Store hash in your password DB.
+
+  // execute will internally call prepare and query
+  connection.execute(
+    "INSERT INTO users (email, password, fname, lname) VALUES (?, ?, ?, ?)",
+    [req.body.email, hash, req.body.fname, req.body.lname],
+    async (err, results, fields) => {
+      if (err) {
+        res.json({ error: "error", message: err });
+        return;
+      }
+      res.json({ status: "ok", message: "User registered successfully" });
+    }
+  );
+});
+
+// app.post("/register", jsonParser, function (req, res, next) version callback function
+/*
 app.post("/register", jsonParser, function (req, res, next) {
   // const email = req.body.email; // get email from request body
 
@@ -40,12 +64,58 @@ app.post("/register", jsonParser, function (req, res, next) {
           res.json({ error: "error", message: err });
           return;
         }
-        res.json({status: "ok", message: "User registered successfully"});
+        res.json({ status: "ok", message: "User registered successfully" });
       }
     );
   });
 });
+*/
 
+// app.post("/login", jsonParser, function (req, res, next) version async await
+app.post("/login", jsonParser, async function (req, res, next) {
+  // execute will internally call prepare and query
+  connection.execute(
+    "SELECT * FROM users WHERE email = ?",
+    [req.body.email],
+    async (err, users, fields) => {
+      if (err) {
+        res.json({ status: "error", message: err });
+        return;
+      }
+      if (users.length > 0) {
+        // compare password
+        // Load hash from your password DB.
+        const result = await bcrypt.compare(
+          req.body.password,
+          users[0].password
+        );
+        // result == true
+        if (result) {
+          // generate jwt token and send it to client side
+          // for authentication purpose in the future request to the server side api
+          const token = jwt.sign({ email: users[0].email }, secret, {
+            expiresIn: "1h",
+          });
+
+          res.json({
+            status: "ok",
+            message: "Login success",
+            token: token,
+          });
+        } else {
+          res.json({ error: err, message: "Invalid password" });
+        }
+      } else {
+        res.json({ error: "error", message: "User not found" });
+        return;
+      }
+    }
+  );
+});
+
+
+// app.post("/login", jsonParser, function (req, res, next) version callback function
+/*
 app.post("/login", jsonParser, function (req, res, next) {
   // execute will internally call prepare and query
   connection.execute(
@@ -88,6 +158,7 @@ app.post("/login", jsonParser, function (req, res, next) {
     }
   );
 });
+*/
 
 app.post("/authen", jsonParser, function (req, res, next) {
   try {
@@ -107,8 +178,8 @@ app.post("/authen", jsonParser, function (req, res, next) {
   }
 });
 
-/*
 // get user profile api with authentication middleware
+/*
 app.get("/user", jsonParser, function (req, res, next) {
   try {
     const token = req.headers.authorization.split(" ")[1]; // split for remove Bearer from token
