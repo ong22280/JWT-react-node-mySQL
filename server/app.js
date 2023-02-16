@@ -6,8 +6,6 @@ const bodyParser = require("body-parser"); // for parsing request body
 const jsonParser = bodyParser.json(); // for parsing application/json
 const bcrypt = require("bcrypt"); // for hashing password
 const saltRounds = 10;
-const myPlaintextPassword = "s0//P4$$w0rD";
-const someOtherPlaintextPassword = "not_bacon";
 const jwt = require("jsonwebtoken");
 const secret = "Fullstack-Login-2023"; // secret key for jwt token generation
 
