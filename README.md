@@ -27,7 +27,17 @@ For example, when you sign in with Google, Google issues a JWT which contains th
 
 ## Steps to run the project in your machine
 1. import sql script into mysql (`mydb.sql`)
-    <img src="./users_table.png"/>
+    ### user table
+
+    | Field    | Type        | Null | Key | Default | Extra          | Comment         |
+    |----------|-------------|------|-----|---------|----------------|-----------------|
+    | id       | int(11)     | NO   | PRI | NULL    | auto_increment | primary key     |
+    | email    | varchar(50) | NO   | UNI | NULL    |                | user's email    |
+    | password | text        | NO   |     | NULL    |                | user's password |
+    | fname    | varchar(50) | NO   |     | NULL    |                | first name      |
+    | lname    | varchar(50) | NO   |     | NULL    |                | last name       |
+
+
 2. ### Server Installation
     ``````````````````````````
     cd server 
