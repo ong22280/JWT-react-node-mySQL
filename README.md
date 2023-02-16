@@ -41,3 +41,9 @@ For example, when you sign in with Google, Google issues a JWT which contains th
     nodemon app.js
     ``````````````````````````
     Open [http://localhost:3333](http://localhost:3333) to view it in the browser.
+
+## Website reference
+- [JWT-nodejs](https://www.npmjs.com/package/jsonwebtoken) : identify an authenticated user
+- [Express API with JWT](https://gist.github.com/thebigredgeek/230368bd92aa19e3f6638b659edf5cef)
+- [Ajax](https://reactjs.org/docs/faq-ajax.html) : send and receive information in various formats
+- [Cors](https://www.npmjs.com/package/cors) : access the api from different domain
