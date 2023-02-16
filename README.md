@@ -10,7 +10,7 @@ For example, when you sign in with Google, Google issues a JWT which contains th
 
 [JWT.IO](https://jwt.io/) allows you to decode, verify and generate JWT.
 
-<img src="./screenshots.png" style="border-radius: 20px;"/>
+<img src="./screenshots.png"/>
 
 ## Prerequisites
 1. Install XAMPP web server
@@ -26,24 +26,26 @@ For example, when you sign in with Google, Google issues a JWT which contains th
 6. MySQL
 
 ## Steps to run the project in your machine
-1. import sql script into mysql (mydb.sql)
+1. import sql script into mysql (`mydb.sql`)
+    <img src="./users_table.png"/>
 2. ### Server Installation
     ``````````````````````````
     cd server 
     npm install
-    npm run dev
+    nodemon app.js
     ``````````````````````````
     Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
-3. ### Server Installation
+3. ### Client Installation
     ``````````````````````````
-    cd server 
+    cd client
     npm install
-    nodemon app.js
+    npm run dev
     ``````````````````````````
     Open [http://localhost:3333](http://localhost:3333) to view it in the browser.
 
 ## Website reference
 - [JWT-nodejs](https://www.npmjs.com/package/jsonwebtoken) : identify an authenticated user
 - [Express API with JWT](https://gist.github.com/thebigredgeek/230368bd92aa19e3f6638b659edf5cef)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) : A library to help you hash passwords.
 - [Ajax](https://reactjs.org/docs/faq-ajax.html) : send and receive information in various formats
 - [Cors](https://www.npmjs.com/package/cors) : access the api from different domain
