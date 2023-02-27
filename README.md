@@ -49,6 +49,7 @@ For example, when you sign in with Google, Google issues a JWT which contains th
     npm run dev
     ``````````````````````````
     Open [http://localhost:5173/](http://localhost:5173/) to view it in the browser.
+    
 
 ## Website reference
 - [JWT-nodejs](https://www.npmjs.com/package/jsonwebtoken) : identify an authenticated user
